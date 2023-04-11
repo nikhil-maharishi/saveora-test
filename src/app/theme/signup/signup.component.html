@@ -1,0 +1,187 @@
+<body class="">
+
+
+    <main>
+        <section class="authPage">
+            <div class="container-fluid gx-0">
+                <div class="row gx-0">
+                    <div class="auth-conatiner col-md-12 col-lg-6 col-xl-6 gx-5">
+                        <div class="auth-wrap">
+                            <h2 class="auth-title">Sign Up For Free.</h2>
+                            <p class="auth-text">We'll never post anything without your permission.</p>
+                            <div class="formMain">
+                                <form name="login" id="login" [formGroup]="signInForm" *ngIf="signInForm"
+                                    (ngSubmit)="onSubmit(signInForm.value)" novalidate="">
+                                    <div class="form-group validate">
+                                        <label class="authLabel">Email</label>
+                                        <span class="set_icon"><img src="assets/images/email.svg"></span>
+                                        <input type="email" class="authInput inputWicon form-control" id="email" name=""
+                                            value="" placeholder="Enter Your Email" formControlName="email">
+                                        <!-- <label class="error">Entered Email is Incorrect</label> -->
+
+                                        <span class="animate_svg">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 130.2 130.2" *ngIf="signInForm.controls['email'].valid ">
+                                                <circle class="path circle" fill="none" stroke="#10896e"
+                                                    stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1"
+                                                    r="62.1" />
+                                                <polyline class="path check" fill="none" stroke="#10896e"
+                                                    stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"
+                                                    points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+                                            </svg>
+                                        </span>
+
+                                        <span class="animate_svg d-none">
+                                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                                viewBox="0 0 130.2 130.2" *ngIf="signInForm.controls['email'].invalid">
+                                                <circle class="path circle" fill="none" stroke="#df525d"
+                                                    stroke-width="6" stroke-miterlimit="10" cx="65.1" cy="65.1"
+                                                    r="62.1" />
+                                                <line class="path line" fill="none" stroke="#df525d" stroke-width="6"
+                                                    stroke-linecap="round" stroke-miterlimit="10" x1="34.4" y1="37.9"
+                                                    x2="95.8" y2="92.3" />
+                                                <line class="path line" fill="none" stroke="#df525d" stroke-width="6"
+                                                    stroke-linecap="round" stroke-miterlimit="10" x1="95.8" y1="38"
+                                                    x2="34.4" y2="92.2" />
+                                            </svg>
+                                        </span>
+                                        <div *ngIf="signInForm.controls['email'].invalid && (signInForm.controls['email'].dirty || signInForm.controls['email'].touched)"
+                                            class="alert-danger">
+
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['email'].errors?.['required']">
+                                                Email is required.
+                                            </small>
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['email'].errors?.['pattern']">
+                                                Email is not valid.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="authLabel">Password</label>
+                                        <span class="set_icon"><img src="assets/images/lock.svg"></span>
+                                        <input [type]="show ? 'text' : 'password'" class="authInput inputWicon inputPassword form-control"
+                                            id="password" name="" value="" placeholder="Enter Your Password"
+                                            formControlName="password">
+                                        <span (click)="showPassword()" class="ShowPassword"><i class="fa fa-eye" aria-hidden="true"></i></span>
+                                        <div *ngIf="signInForm.controls['password'].invalid && (signInForm.controls['password'].dirty || signInForm.controls['password'].touched )"
+                                            class="alert-danger">
+
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['password'].errors?.['required']">
+                                                Password is required.
+                                            </small>
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['password'].errors?.['pattern']">
+                                                Password must contain one uppercase , one lowercase , one number, one
+                                                special character.
+                                            </small>
+                                            <small class="error"
+                                                *ngIf="!signInForm.controls['password'].errors?.['minLength']">
+                                                Password must contain minimum 8 character.
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <label class="authLabel">Confirm Password</label>
+                                        <span class="set_icon"><img src="assets/images/lock.svg"></span>
+                                        <input [type]="show ? 'text' : 'password'" class="authInput inputWicon inputPassword form-control"
+                                            id="cnfrmpassword" name="" value="" placeholder="Enter Your Password Again"
+                                            formControlName="cnfrmpassword">
+                                        <span class="ShowPassword"><i (click)="showPassword()" class="fa fa-eye-slash"
+                                                aria-hidden="true"></i></span>
+                                        <div *ngIf="signInForm.controls['cnfrmpassword'].invalid && (signInForm.controls['cnfrmpassword'].dirty || signInForm.controls['cnfrmpassword'].touched )"
+                                            class="alert-danger">
+
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['cnfrmpassword'].errors?.['required']">
+                                                Confirm Password is required.
+                                            </small>
+                                            <small class="error"
+                                                *ngIf="signInForm.controls['cnfrmpassword'].errors?.['confirmPasswordValidator']">
+                                                Confirm Password must be same as password
+                                            </small>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group ">
+                                        <div class="corsur-div referralCode-btn">Have a referral code?</div>
+                                    </div>
+                                    <div class="form-group referralCode" style="display: none;">
+                                        <label class="authLabel">Referral Code</label>
+                                        <span class="set_icon"><img src="assets/images/referral.svg"></span>
+                                        <input type="text" class="authInput inputWicon form-control" id="" name=""
+                                            value="" placeholder="Enter Enter Referral Code">
+
+                                    </div>
+                                    <div class="form-group ">
+                                        <div class="iagree">
+                                            <div class="iagree-control">
+                                                <input type="checkbox" class="iagree-input" id="termCheck"
+                                                    formControlName="termCheck" required>
+                                                <label class="iagree-label" for="termCheck">I agree to <a
+                                                        class="iagree-link" href="#" target="_blank">Privacy Policy</a>
+                                                    and <a class="iagree-link" href="#" target="_blank">Terms of
+                                                        Use</a></label>
+                                            </div>
+                                            <div
+                                                *ngIf="signInForm.controls['termCheck'].invalid && (signInForm.controls['termCheck'].dirty || signInForm.controls['cnfrmpassword'].touched )">
+
+                                                <small class="error"
+                                                    *ngIf="signInForm.controls['termCheck'].errors?.['required']">
+                                                    Please check our Terms and Conditions
+                                                </small>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn sign_upbtn" [disabled]="!signInForm.valid">Sign
+                                            Up</button>
+                                    </div>
+                                    <p class="authForm-text">Already have an Account ? <a class="authForm-link"
+                                            href="login.php">Sign in</a></p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="authOffer-conatiner d-none d-lg-block col-lg-6 col-xl-6 gx-5">
+                        <div class="authOffer-wrap">
+                            <div class="d-flex align-items-start">
+                                <h3 class="authOffer-title">Sign up & Get <span class="authOffer-span">₹25.00</span>
+                                    Today!</h3>
+                                <svg class="authOffer-arrow" xmlns="http://www.w3.org/2000/svg" width="189" height="101"
+                                    viewBox="0 0 189 101" fill="none">
+                                    <path opacity="0.3"
+                                        d="M40.4061 79.6251C46.3058 81.7586 51.264 82.1978 56.0967 83.2646C63.0006 84.8333 69.8416 86.7158 76.4317 89.2258C78.8167 90.1043 80.7623 92.928 82.2686 95.2498C83.6494 97.3833 81.7037 100.709 79.1932 100.897C76.7454 101.085 74.1722 101.023 71.7245 100.646C53.5234 98.1362 35.3223 95.5635 17.1212 92.8653C13.4182 92.3005 9.65255 91.5474 6.20062 90.1042C-0.263905 87.4687 -1.83299 81.3194 2.24656 75.7974C3.75286 73.7895 5.573 71.9697 7.45587 70.4637C21.8285 58.9806 36.2637 47.5601 50.6991 36.2025C51.6405 35.4495 52.8958 34.4454 53.9627 34.4454C55.469 34.4454 57.1636 34.9475 58.3561 35.8887C59.0465 36.4535 59.4231 38.5241 58.921 39.2771C56.8499 42.4146 54.7159 45.4894 52.1427 48.1877C47.8748 52.6429 43.2304 56.7844 38.1466 61.6788C41.3475 64.126 44.1718 63.1847 46.745 62.871C99.4655 55.592 154.571 40.595 172.333 28.5471C170.387 27.3548 168.881 25.8488 167.061 25.4096C157.332 23.0251 147.604 20.4523 137.751 18.8836C104.989 13.6126 72.0383 12.3577 38.9626 15.4951C34.4437 15.9344 30.113 16.3109 26.7866 20.7034C24.5271 23.7154 18.8786 22.2721 15.866 18.8209C13.481 16.1227 13.9203 10.9771 17.2467 8.84364C20.0083 7.08665 23.1465 5.45523 26.2846 4.82773C34.883 3.13349 43.5442 1.37657 52.2682 0.811826C87.4779 -1.32166 122.499 0.623547 157.019 8.15348C163.106 9.47122 169.132 11.3536 175.031 13.4244C178.107 14.4911 181.182 16.2481 183.755 18.2561C190.094 23.2133 190.848 31.2453 185.136 36.83C181.621 40.2184 177.291 43.2932 172.772 45.1757C161.6 49.8191 150.303 54.337 138.755 57.7882C107.876 67.0124 76.4945 73.9149 44.4857 78.1191C43.6698 78.2446 42.7283 78.8093 40.4061 79.6251Z"
+                                        fill="white" />
+                                </svg>
+                            </div>
+                            <div class="authOffer-pic">
+                                <img src="assets/images/auth.png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <script type="text/javascript">
+
+        $('.referralCode-btn').click(function () {
+            $('.referralCode').show();
+            $(this).hide();
+        });
+
+    </script>
+
+
+
+
+    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
